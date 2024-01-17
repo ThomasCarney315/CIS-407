@@ -17,6 +17,7 @@ public class GuessNumberApp {
 				boolean correct = false;
 				String message = "";
 				int guessDiff;
+				int lastGuessDiff = 0;
 				int guess;
 				
 				
@@ -26,6 +27,7 @@ public class GuessNumberApp {
 					game.makeGuess(guess);
 					
 					guessDiff = game.guessNumber - game.number;
+					
 					if (game.isCorrectGuess()) {
 						if (game.counter <= 3) {
 							message = "Great Work! You are a mathematecal wizard.";
@@ -42,21 +44,27 @@ public class GuessNumberApp {
 						
 					}
 					else {
-						if (guessDiff > 10) {
-							message = "Way too high! Guess again.";
-						}
-						else if (guessDiff > 0 ) {
-							message = "Too high! Guess again.";
-						}
-						else if (guessDiff < -10) {
-							message = "Way too low! Guess again.";
+						if (guessDiff > 0 ) {
+							message = "Too high! ";
 						}
 						else if (guessDiff < 0) {
-							message = "Too low! Guess again.";
+							message = "Too low! ";
 						}
+						if (lastGuessDiff != 0) {
+							if (Math.abs(guessDiff) > Math.abs(lastGuessDiff)) {
+								message += "You're getting colder.";
+							}
+							else if (Math.abs(guessDiff) < Math.abs(lastGuessDiff)) {
+								message += "You're getting warmer.";
+							}
+							else {
+								message += "Same temp.";
+							}
+						}
+						
 						game.displayGuessAgainMessage(message);
 					}
-					
+					lastGuessDiff = guessDiff;
 				}
 				
 				System.out.print("Try again? (y/n):  ");
