@@ -9,12 +9,12 @@ public class Customer {
 	private String street;
 	private String city;
 	private String state;
-	private int zip;
+	private Integer zip;
 	private String phone;
 	//constructor
 	public Customer(String id, String ssn, String lastName, String firstName,
 					String street, String city, String state,
-					int zip, String phone) {
+					Integer zip, String phone) {
 		this.id = id;
 		this.ssn = ssn;
 		this.lastName = lastName;
@@ -24,6 +24,9 @@ public class Customer {
 		this.state = state;
 		this.zip = zip;
 		this.phone = phone;
+	}
+	public Customer() {
+		
 	}
 	//setters
 	public void setId(String id) {
@@ -75,7 +78,7 @@ public class Customer {
 	public String getState() {
 		return this.state;
 	}
-	public int getZip() {
+	public Integer getZip() {
 		return this.zip;
 	}
 	public String getPhone() {
