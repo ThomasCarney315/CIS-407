@@ -11,7 +11,7 @@ public class Customer {
 	private String state;
 	private Integer zip;
 	private String phone;
-	//constructor
+	//constructor for initializing with values
 	public Customer(String id, String ssn, String lastName, String firstName,
 					String street, String city, String state,
 					Integer zip, String phone) {
@@ -25,6 +25,7 @@ public class Customer {
 		this.zip = zip;
 		this.phone = phone;
 	}
+	//constructor for initializing a blank customer instance
 	public Customer() {
 		
 	}
