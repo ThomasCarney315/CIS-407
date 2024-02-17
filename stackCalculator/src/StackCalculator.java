@@ -1,11 +1,11 @@
 import java.util.Stack;
 
 public class StackCalculator {
-    Stack calculator;
+    Stack <Double> calculator;
     String command = "start";
 
     public StackCalculator() {
-        calculator = new Stack();
+        calculator = new Stack<Double>();
     }
     public void displayWelcomeMessage() {
         System.out.println("Welcome to the Stack Calculator");
