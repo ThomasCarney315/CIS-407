@@ -1,5 +1,7 @@
 package courseProject;
 
+import java.util.ArrayList;
+
 public class Customer {
 	//instance variables
 	private String id;
@@ -11,6 +13,7 @@ public class Customer {
 	private String state;
 	private Integer zip;
 	private String phone;
+	private ArrayList<String> accounts = new ArrayList<String>();
 	//constructor for initializing with values
 	public Customer(String id, String ssn, String lastName, String firstName,
 					String street, String city, String state,
@@ -28,6 +31,9 @@ public class Customer {
 	//constructor for initializing a blank customer instance
 	public Customer() {
 		
+	}
+	public void addAccount(String id) {
+		accounts.add(id);
 	}
 	//setters
 	public void setId(String id) {
@@ -84,6 +90,9 @@ public class Customer {
 	}
 	public String getPhone() {
 		return this.phone;
+	}
+	public ArrayList<String> getAccounts() {
+		return accounts;
 	}
 	//toString method
 	public String toString() {

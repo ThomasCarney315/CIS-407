@@ -331,7 +331,6 @@ public class DataEntry {
 		sdf.setLenient(false);
 		try {
 			Date date = sdf.parse((String) dateStr);
-			System.out.println(sdf.format(date));
 			if (date == null) {
 				return false;
 			}
@@ -341,5 +340,18 @@ public class DataEntry {
 		}
 		return true;
 		
+	}
+	static public Date formatDate(Object dateStr) {
+		Date date = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		sdf.setLenient(false);
+		try {
+			date = sdf.parse((String) dateStr);
+		}
+		catch (Exception e) {
+			System.out.println("Date error.");
+		}
+		return date;
+
 	}
 }

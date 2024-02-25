@@ -1,6 +1,10 @@
 package courseProject;
 
-public class Account {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public abstract class Account {
+    private String accountHolder;
     private String accountNumber;
     private String accountType;
     private double serviceFee;
@@ -22,6 +26,7 @@ public class Account {
 
     }
     //setters
+    public void setAccountHolder(String id) { this.accountHolder = id; }
     public void setAccountNumber (String number) { this.accountNumber = number; }
     public void setAccountType (String type) { this.accountType = type; }
     public void setServiceFee (double n) { this.serviceFee = n; }
@@ -29,21 +34,45 @@ public class Account {
     public void setOverdraftFee (double n) { this.overdraftFee = n; }
     public void setBalance (double n) { this.balance = n; }
     //getters
+
+    public String getAccountHolder() { return this.accountHolder; }
     public String getAccountNumber () { return this.accountNumber; }
     public String getAccountType () { return this.accountType; }
     public double getServiceFee () { return this.serviceFee; }
     public double getInterestRate () { return this.interestRate; }
     public double getOverdraftFee () { return this.overdraftFee; }
     public double getBalance () { return this.balance; }
+    public abstract void withdrawal(double amount, Date date);
+    public abstract void deposit(double amount, Date date);
+    public abstract Date getTransactionDate();
+    public abstract String getTransactionType();
+    public abstract double getTransactionAmount();
     //toString method
     public String toString() {
         String res = String.format("Account Details:\n\n"
+                + "Account Holder:  %s\n"
                 + "Account Number:  %s\n"
                 + "  Account Type:  %s\n"
                 + "   Service Fee:  %s\n"
                 + " Interest Rate:  %s\n"
                 + " Overdraft Fee:  %s\n"
-                + "       Balance:  %s\n",accountNumber, accountType, serviceFee, interestRate, overdraftFee, balance);
+                + "       Balance:  %s\n",accountHolder, accountNumber, accountType, serviceFee, interestRate, overdraftFee, balance);
         return res;
+    }
+    protected void displayTransaction(double fees) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String res = String.format("Transaction Details:\n\n"
+                + "     Customer ID:  %s\n"
+                + "  Account Number:  %s\n"
+                + "    Account Type:  %s\n"
+                + "Transaction Date:  %s\n"
+                + "Transaction Type:  %s\n"
+                + " Transaction Amt:  %s\n"
+                + "            Fees:  %s\n"
+                + "         Balance:  %s\n", getAccountHolder(), getAccountNumber(), getAccountType(), sdf.format(getTransactionDate()), getTransactionType(), getTransactionAmount(), fees, getBalance());
+        System.out.println(res);
+    }
+    public void addInterest() {
+        setBalance(balance + (balance * interestRate));
     }
 }
