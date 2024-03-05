@@ -17,7 +17,7 @@ public class CheckingAccount extends Account{
     @Override
     public double getTransactionAmount() { return transactionAmount;}
     @Override
-    public void withdrawal(double amount, Date date) {
+    public void withdrawal(double amount, Date date) throws RuntimeException{
         double res = getBalance();
         double fees = getServiceFee();
         try {
@@ -30,24 +30,24 @@ public class CheckingAccount extends Account{
             transactionAmount = amount;
             transactionType = "WTH";
             transactionDate = date;
+            displayTransaction(fees);
         }
         catch (Exception e) {
-            System.out.println("Error. Transaction canceled.");
+           throw new RuntimeException("Error. Transaction canceled.");
         }
-        displayTransaction(fees);
     }
     @Override
-    public void deposit(double amount, Date date) {
+    public void deposit(double amount, Date date) throws RuntimeException{
         double res = getBalance() + amount - getServiceFee();
         try {
             setBalance(res);
             transactionAmount = amount;
             transactionType = "DEP";
             transactionDate = date;
+            displayTransaction(getServiceFee());
         }
         catch (Exception e) {
-            System.out.println("Error. Transaction canceled.");
+            throw new RuntimeException("Error. Transaction canceled.");
         }
-        displayTransaction(getServiceFee());
     }
 }

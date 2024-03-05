@@ -338,12 +338,10 @@ public class BankAcctApp extends JFrame implements ActionListener {
 				} else {
 					throw new RuntimeException("Must select transaction type");
 				}
-
+				transactionStatus.setText("Success!");
 			} catch (Exception ex) {
 				transactionStatus.setText(ex.getMessage());
 			}
-			transactionStatus.setText("Success!");
-
 		}
 		//add interest
 		else if (source == addInterest) {
