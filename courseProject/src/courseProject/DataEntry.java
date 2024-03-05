@@ -104,6 +104,50 @@ public class DataEntry {
 		}
 		return true;
 	}
+	//methods for entering string with validation conditions - without Scanner
+	static public void enterStringWithLimits(Customer c,  String field, String val, int min,  int limit) throws Exception {
+		if (!isStringWithinLimits(val, min, limit)) {
+			throw new Exception("Invalid input.");
+		}
+		if (field == "id") {c.setId(val);}
+		else if(field == "ssn") {
+			if(!isNumericString(val)) {
+				throw new Exception("Invalid input.");
+			}
+			c.setSsn(val);
+		}
+		else if(field == "lastName") {c.setLastName(val);}
+		else if(field == "firstName") {c.setFirstName(val);}
+		else if(field == "street") {c.setStreet(val);}
+		else if(field == "city") {c.setCity(val);}
+		else if(field == "state") {c.setState(val);}
+		else if(field == "zip") {
+			if(!isNumericString(val)) {
+				throw new Exception("Invalid input.");
+			}
+			c.setZip(Integer.parseInt(val));
+		}
+		else if(field == "phone") {
+			if(!isNumericString(val)) {
+				throw new Exception("Invalid input.");
+			}
+			c.setPhone(val);
+		}
+	}
+	static public void enterStringWithLimits(Account c,  String field, String val, int min,  int limit) throws Exception {
+		if (!isStringWithinLimits(val, min, limit)) {
+			throw new Exception("Invalid input.");
+		}
+		if (field == "number") {c.setAccountNumber(val);}
+		else if(field == "type") {
+			if (val.equals("CHK") || val.equals("SAV")) {
+				c.setAccountType(val);
+			}
+			else {
+				throw new Exception("Invalid input.");
+			}
+		}
+	}
 	//overrides for entering string with validation conditions and conditions-description
 	static public boolean enterStringWithLimits(Customer c,  String field, Scanner input, int min,  int limit, String conditionStr) throws Exception {
 		System.out.print("Enter customer " + field + " "+ conditionStr +":  ");

@@ -1,5 +1,6 @@
 package courseProject;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -70,7 +71,7 @@ public abstract class Account {
                 + " Transaction Amt:  %s\n"
                 + "            Fees:  %s\n"
                 + "         Balance:  %s\n", getAccountHolder(), getAccountNumber(), getAccountType(), sdf.format(getTransactionDate()), getTransactionType(), getTransactionAmount(), fees, getBalance());
-        System.out.println(res);
+        JOptionPane.showMessageDialog(null,res, "Success", JOptionPane.PLAIN_MESSAGE);
     }
     public void addInterest() {
         setBalance(balance + (balance * interestRate));
